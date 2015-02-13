@@ -7,6 +7,7 @@
     <link href="bs3/css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet">
     <link href="css/atom-style.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/PCharts/style.css" type="text/css">
     <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
@@ -16,15 +17,15 @@
     <script type="text/javascript">
         google.load("visualization", "1.1", {packages: ["bar", "corechart", "geochart", "map", "annotationchart"]})</script>
 
-    <script>google.setOnLoadCallback(startMe);
-
-    function startMe() {
-
-        drawLineChart();
-        drawChart();
-        drawBubbleChart();
-        drawComboChart();
-        drawAnnotationChart();    }
+    <script>
+        google.setOnLoadCallback(startMe);
+        function startMe() {
+            drawLineChart();
+            drawChart();
+            drawBubbleChart();
+            drawComboChart();
+            drawAnnotationChart();
+        }
 
     </script>
 
@@ -64,76 +65,75 @@
 </div>
 <!--Left navbar end-->
 
-
 <!--main start-->
 <div id="main">
 <div class="head-title">
-    <div class="menu-switch"><i class="fa fa-bars"></i></div>
-    <!--row start-->
-    <div class="row">
-        <!--col-md-12 start-->
-        <div class="col-md-12" style=":position: relative;
-            left: -20px;"
-        <!--profile dropdown start-->
-        <ul class="user-info pull-right">
-            <li class="hidden-xs">
-                <input type="text" placeholder=" Search" class="form-control page-search">
-            </li>
-            <li class="profile-info dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img
-                    class="img-circle" alt="" src="images/avatar.jpg">Scott henderson </a>
-                <ul class="dropdown-menu">
-                    <li class="caret"></l>
-                    <li><a href="login.html"> <i class="fa fa-clipboard"></i> Log Out </a></li>
-                </ul>
-            </li>
-        </ul>
-        <!--profile dropdown end-->
+<div class="menu-switch"><i class="fa fa-bars"></i></div>
+<!--row start-->
+<div class="row">
+    <!--col-md-12 start-->
+    <div class="col-md-12" style=":position: relative;
+            left: -20px;"></div>
+    <!--profile dropdown start-->
+    <ul class="user-info pull-right">
+        <li class="hidden-xs">
+            <input type="text" placeholder=" Search" class="form-control page-search">
+        </li>
+        <li class="profile-info dropdown"><a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img
+                class="img-circle" alt="" src="images/avatar.jpg">Scott henderson </a>
+            <ul class="dropdown-menu">
+                <li class="caret"></li>
+                <li><a href="login.html"> <i class="fa fa-clipboard"></i> Log Out </a></li>
+            </ul>
+        </li>
+    </ul>
+    <!--profile dropdown end-->
 
-        <!--margin-container start-->
-        <div class="margin-container">
+    <!--margin-container start-->
+    <div class="margin-container">
 
-            <!--scrollable wrapper start-->
-            <div class="scrollable wrapper">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="box-info">
-                            <h1>Master View </h1>
-                            <h4>
+        <!--scrollable wrapper start-->
+        <div class="scrollable wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="box-info">
+                        <h1>Master View </h1>
+                        <h4>
                           <span>
                             Customer name
                           </span>
                           <span class="pull-right">
                            Customer Satisfaction Rating
                          </span>
-                            </h4>
-                            <h4>
+                        </h4>
+                        <h4>
                         <span>Address
                         </span>
                         <span class="pull-right">
                          Monthly Revenue
                        </span>
-                            </h4>
-                            <h4>
+                        </h4>
+                        <h4>
                        <span> 
                         Phone
                       </span>
                       <span class="pull-right">
                        Anual Revenue
                      </span>
-                            </h4>
+                        </h4>
 
-                        </div>
                     </div>
                 </div>
-                <!--row start-->
-                <div class="row">
-                    <!--col-md-4 start-->
-                    <div class="col-md-4">
-                        <h3>Customers at risk</h3>
+            </div>
+            <!--row start-->
+            <div class="row">
+                <!--col-md-4 start-->
+                <div class="col-md-4">
+                    <h3>Customers at risk</h3>
 
-                        <div class="box-info">
-                            <a href="Tables.html">
-                            <div id="chartdiv8" style="width:100%; height:400px;">
+                    <div class="box-info">
+                        <a href="Tables.html">
+                            <div id="chartdiv8" class="animated" style="width:100%; height:400px;">
                                 <table class="table table-bordered">
                                     <thead>
                                     <tr>
@@ -147,58 +147,58 @@
                                     <tr>
                                         <td>1</td>
                                         <td>Brandt, Jonathan F Esq
-                         </td>
+                                        </td>
 
 
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Landrum Temporary Services</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Landrum Temporary Services</td>
 
 
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td> Inabinet, Macre Esq</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td> Inabinet, Macre Esq</td>
 
 
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Morris Downing & Sherred</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Morris Downing & Sherred</td>
 
 
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Buelt, David L Esq</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Buelt, David L Esq</td>
 
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td> Artesian Ice & Cold Storage Co</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td> Artesian Ice & Cold Storage Co</td>
 
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td> Artesian Ice & Cold Storage Co</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td> Artesian Ice & Cold Storage Co</td>
 
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td> Artesian Ice & Cold Storage Co</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td> Artesian Ice & Cold Storage Co</td>
 
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td> Artesian Ice & Cold Storage Co</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td> Artesian Ice & Cold Storage Co</td>
 
-                            </tr>
+                                    </tr>
 
-                            </tbody>
-                            </table>
-                        </div>
-                            </a>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 <!--col-md-4 end-->
@@ -207,7 +207,7 @@
                     <h3>Contract value of Churn</h3>
 
                     <div class="box-info">
-                        <div id="chartdiv9" style="width:100%; height:400px;"></div>
+                        <div id="chartdiv9" class="animated" style="width:100%; height:400px;"></div>
                     </div>
                 </div>
                 <!--col-md-4 end-->
@@ -216,7 +216,7 @@
                     <h3>Number of users lost</h3>
 
                     <div class="box-info">
-                        <div id="chartdiv10" style="width:100%; height:400px;"></div>
+                        <div id="chartdiv10" class="animated" style="width:100%; height:400px;"></div>
                     </div>
                 </div>
                 <!--col-md-4 end-->
@@ -227,7 +227,7 @@
                     <h3>Danger Zone</h3>
 
                     <div class="box-info">
-                        <div id="chartdiv11" style="width:100%; height:400px;"></div>
+                        <div id="chartdiv11" class="animated" style="width:100%; height:400px;"></div>
                     </div>
                 </div>
                 <!--col-md-4 end-->
@@ -236,7 +236,7 @@
                     <h3>New Revenue vs. Churn</h3>
 
                     <div class="box-info">
-                        <div id="chartdiv12" style="width:100%; height:400px;"></div>
+                        <div id="chartdiv12" class="animated" style="width:100%; height:400px;"></div>
                     </div>
                 </div>
                 <!--col-md-4 end-->
@@ -245,7 +245,7 @@
                     <h3>Potential revenue loss</h3>
 
                     <div class="box-info">
-                        <div id="chartdiv13" style="width:100%; height:400px;"></div>
+                        <div id="chartdiv13" class="animated" style="width:100%; height:400px;"></div>
                     </div>
                     <!--col-md-4 end-->
                 </div>
@@ -271,9 +271,8 @@
 
 
 <script>
+
     function drawMapChart() {
-
-
         var data = google.visualization.arrayToDataTable([
             ['Lat', 'Long', 'Name'],
             [33.75524465, -84.38781023, 'Main Office - ADDRESS COMES HERE'],
@@ -383,7 +382,6 @@
     }
 
     function drawBubbleChart() {
-
         var data = google.visualization.arrayToDataTable([
             ['ID', 'Avg Login/day', 'Time', 'Region', 'Population'],
             ['GBR', 180.05, 2.030, 'Europe', 161801570],
@@ -458,6 +456,26 @@
         chart.draw(data, options);
     }
 
-</script
+</script>
+
+
+
+
+<script>
+    $(document).ready(function (){
+
+        $('.animated').on("mouseover", function (e) {
+            var that = this;
+
+            $(this).addClass("pulse");
+            setTimeout(function (){
+
+                $(that).removeClass("pulse");
+
+            },2000)
+        });
+    });
+</script>
+
 </body>
 </html>
