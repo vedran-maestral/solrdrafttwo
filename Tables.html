@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Atom-Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap -->
+  <link href="bs3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style-responsive.css" rel="stylesheet">
+  <link href="css/atom-style.css" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="plugins/PCharts/style.css" type="text/css">
+  <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+      <![endif]-->
+    </head>
+    <body>
+      <!--layout-container start-->
+      <div id="layout-container"> 
+        <!--Left navbar start-->
+        <div id="nav"> 
+          <!--logo start-->
+          <div class="profile">
+            <div class="logo"><a href="index.html"><img src="images/logo.png" alt=""></a></div>
+          </div><!--logo end--> 
+
+          <!--navigation start-->
+          <ul class="navigation">
+            <li><a href="index.html"><i class="fa fa-home"></i><span>Main</span></a></li>
+            <li class="sub"> <a href="#"><i class="fa fa-smile-o"></i><span>Something</span></a>
+
+              <li><a href="#"><i class="fa fa-power-off"></i><span>Something</span></a></li>
+              <li><a href="tables.html"><i class="fa fa-columns"></i><span>Tables</span></a></li>
+              <li><a href="#"><i class="fa fa-flag"></i><span>Something</span></a></li>
+              <li><a href="#"><i class="fa fa-plus-square-o"></i><span>Something</span></a></li>
+              <li><a href="#"><i class="fa  fa-arrow-circle-o-down"></i><span>Something</span></a></li>
+        
+            </ul>
+          </li>
+
+        </ul><!--navigation end--> 
+      </div><!--Left navbar end--> 
+
+
+      <!--main start-->
+      <div id="main">
+        <div class="head-title">
+          <div class="menu-switch"><i class="fa fa-bars"></i></div>
+          <!--row start-->
+          <div class="row"> 
+            <!--col-md-12 start-->
+            <div class="col-md-12"> 
+              <!--profile dropdown start-->
+              <ul class="user-info pull-right">
+                <li class="hidden-xs">
+                  <input type="text" placeholder=" Search" class="form-control page-search">
+                </li>
+                <li class="profile-info dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img class="img-circle" alt="" src="images/avatar.jpg">Scott henderson </a>
+                  <ul class="dropdown-menu">
+                    <li class="caret"></l>
+                      <li> <a href="login.html"> <i class="fa fa-clipboard"></i> Log Out </a> </li>
+                    </ul>
+                  </li>
+                </ul><!--profile dropdown end--> 
+
+
+
+
+
+                <!--margin-container start-->
+                <div class="margin-container">
+
+                  <!--scrollable wrapper start-->
+                  <div class="scrollable wrapper">
+                    <div class="row" >
+                      <div class="col-md-12">
+                        <div class="box-info">
+                          <h4>
+                            <span>
+                              Customer name
+                            </span>
+                            <span class="pull-right">
+                             Customer Satisfaction Rating
+                           </span>
+                         </h4>
+                         <h4>
+                          <span>Address
+                          </span>
+                          <span class="pull-right">
+                           Monthly Revenue
+                         </span>
+                       </h4>
+                       <h4>
+                         <span> 
+                          Phone
+                        </span>
+                        <span class="pull-right">
+                         Anual Revenue
+                       </span>
+                     </h4>
+
+                   </div>
+                 </div>
+               </div>
+               
+               <div class="row"
+
+               <!--col-md-12 start-->
+               <div class="col-md-12">
+                <div class="box-info">
+                  <h4>List of customers at risk</h4>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Company</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Risk unit</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td><a href="panel1.html">Brandt, Jonathan F Esq </a> </td>
+                        <td>Row 3</td>
+                        <td>Row 4</td>
+                        <td>1</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Landrum Temporary Services</td>
+                        <td>Row 3</td>
+                        <td>Row 4</td>
+                        <td>2</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td> Inabinet, Macre Esq</td>
+                        <td>Row 3</td>
+                        <td>Row 4</td>
+                        <td>3</td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>Morris Downing & Sherred </td>
+                        <td>Row 3</td>
+                        <td>Row 4</td>
+                        <td>4</td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>Buelt, David L Esq </td>
+                        <td>Mayra Bena</td>
+                        <td>Row 4</td>
+                        <td>5</td>
+                      </tr>
+                      <tr>
+                        <td>6</td>
+                        <td> Artesian Ice & Cold Storage Co</td>
+                        <td> Idella Scotland</td>
+                        <td>Row 4</td>
+                        <td>6</td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div><!--col-md-12 end-->
+            </div><!--row end-->
+
+          </div><!--scrollable wrapper end-->
+        </div><!--margin-container end-->
+      </div><!--main end-->
+    </div><!--layout-container end-->
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="js/jquery-1.10.2.js"></script> 
+    <script src="js/jquery-ui-1.9.1.js"></script> 
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="bs3/js/bootstrap.min.js"></script> 
+    <script src="js/smooth-sliding-menu.js"></script> 
+    <script src="js/console-numbering.js"></script> 
+    <script src="js/to-do-admin.js"></script> 
+
+  </body>
+  </html>
