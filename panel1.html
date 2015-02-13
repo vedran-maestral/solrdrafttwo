@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
     <link href="./css/style.css" rel="stylesheet">
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1.1", {packages: ["bar", "corechart", "geochart", "map", "annotationchart"]})</script>
+
   <link href="./bs3/css/bootstrap.min.css" rel="stylesheet">
   <link href="./css/style-responsive.css" rel="stylesheet">
   <link href="./css/atom-style.css" rel="stylesheet">
@@ -12,6 +16,139 @@
   <link rel="stylesheet" href="plugins/PCharts/style.css" type="text/css">
   <link href="./plugins/kalendar/kalendar.css" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+
+    <script>
+        google.setOnLoadCallback(startMe);
+        function startMe() {
+            drawZoomableChart();
+            drawproductionValues();
+        }
+    </script>
+
+    <script>
+
+        //Production values
+        function drawproductionValues(){
+
+            var rowData1 = [['Month', 'Georgia', 'Washington', 'New York', 'Texas', 'Ohio', 'Average'],
+
+                ['2006/07', 157, 1167, 587, 807, 397, 623],
+                ['2007/08', 139, 1110, 615, 968, 215, 409.4],
+                ['2008/09', 136, 691, 629, 1026, 366, 569.6]];
+            var rowData2 = [['Month', 'Georgia', 'Washington', 'New York', 'Texas', 'Ohio', 'Average'],
+
+                ['2006/07', 183, 167, 487, 207, 397, 623],
+                ['2007/08', 200, 510, 315, 1068, 215, 609.4],
+                ['2008/09', 123, 491, 829, 826, 366, 569.6]];
+
+            // Create and populate the data tables.
+            var data = [];
+            data[0] = google.visualization.arrayToDataTable(rowData1);
+            data[1] = google.visualization.arrayToDataTable(rowData2);
+
+            var options = {
+                width: 400,
+                height: 240,
+                vAxis: {title: "Pounds"},
+                hAxis: {title: "Month"},
+                seriesType: "bars",
+                series: {5: {type: "line"}},
+                animation:{
+                    duration: 1000,
+                    easing: 'out'
+                }
+            };
+            var current = 0;
+            // Create and draw the visualization.
+            var chart = new google.visualization.ComboChart(document.getElementById('productionvalues'));
+            var button = document.getElementById('b1button');
+            function drawChart() {
+                // Disabling the button while the chart is drawing.
+                button.disabled = true;
+                google.visualization.events.addListener(chart, 'ready',
+                        function() {
+                            button.disabled = false;
+                            button.value = 'Switch to ' + (current ? 'Corn' : 'Meat');
+                        });
+                options['title'] = 'Monthly ' + (current ? 'Meat' : 'Corn') + ' Production by State';
+
+                chart.draw(data[current], options);
+            }
+            drawChart();
+
+            button.onclick = function() {
+                current = 1 - current;
+                drawChart();
+            }
+        }
+
+
+        //Zoom Interaction
+        function drawZoomableChart() {
+            var options = {
+                width: 400,
+                height: 240,
+                animation: {
+                    duration: 1000,
+                    easing: 'in'
+                },
+                hAxis: {viewWindow: {min:0, max:5}}
+            };
+
+            var chart = new google.visualization.SteppedAreaChart(
+                    document.getElementById('stockvaluegraph'));
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'x');
+            data.addColumn('number', 'y');
+            var MAX = 10;
+            for (var i = 0; i < MAX; ++i) {
+                data.addRow([i.toString(), Math.floor(Math.random() * 100)]);
+            }
+            var prevButton = document.getElementById('b1');
+            var nextButton = document.getElementById('b2');
+            var changeZoomButton = document.getElementById('b3');
+
+            function drawChart() {
+                // Disabling the button while the chart is drawing.
+                prevButton.disabled = true;
+                nextButton.disabled = true;
+                changeZoomButton.disabled = true;
+                google.visualization.events.addListener(chart, 'ready',
+                        function() {
+                            prevButton.disabled = options.hAxis.viewWindow.min <= 0;
+                            nextButton.disabled = options.hAxis.viewWindow.max >= MAX;
+                            changeZoomButton.disabled = false;
+                        });
+                chart.draw(data, options);
+            }
+
+            prevButton.onclick = function() {
+                options.hAxis.viewWindow.min -= 1;
+                options.hAxis.viewWindow.max -= 1;
+                drawChart();
+            }
+            nextButton.onclick = function() {
+                options.hAxis.viewWindow.min += 1;
+                options.hAxis.viewWindow.max += 1;
+                drawChart();
+            }
+            var zoomed = false;
+            changeZoomButton.onclick = function() {
+                if (zoomed) {
+                    options.hAxis.viewWindow.min = 0;
+                    options.hAxis.viewWindow.max = 5;
+                } else {
+                    options.hAxis.viewWindow.min = 0;
+                    options.hAxis.viewWindow.max = MAX;
+                }
+                zoomed = !zoomed;
+                drawChart();
+            }
+            drawChart();
+        }
+    </script>
+
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -39,13 +176,11 @@
               <li><a href="#"><i class="fa fa-flag"></i><span>Something</span></a></li>
               <li><a href="#"><i class="fa fa-plus-square-o"></i><span>Something</span></a></li>
               <li><a href="#"><i class="fa  fa-arrow-circle-o-down"></i><span>Something</span></a></li>
-          
             </ul>
           </li>
 
         </ul><!--navigation end--> 
-      </div><!--Left navbar end--> 
-
+      </div><!--Left navbar end-->
 
       <!--main start-->
       <div id="main">
@@ -62,14 +197,11 @@
                 </li>
                 <li class="profile-info dropdown"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <img class="img-circle" alt="" src="images/avatar.jpg">Scott henderson </a>
                   <ul class="dropdown-menu">
-                    <li class="caret"></l>
+                    <li class="caret"></li>
                       <li> <a href="login.html"> <i class="fa fa-clipboard"></i> Log Out </a> </li>
                     </ul>
                   </li>
                 </ul><!--profile dropdown end--> 
-
-
-
 
 
                 <!--margin-container start-->
@@ -132,6 +264,30 @@
                     <div id="chartdiv10" style="width:100%; height:400px;"></div>
                   </div>
                 </div><!--col-md-4 end-->
+
+                   <div class="col-sm-3">
+                       <div class="box-info">
+                           <p>Current Stock Values</p>
+                           <div style="width:100%; height:300px;">
+                                   <form>
+                                       <input id="b1" type="button" class="btn btn-success" value="Previous">
+                                       <input id="b2" type="button" class="btn btn-success"value="Next">
+                                       <input id="b3" type="button" class="btn btn-primary" value="Change Zoom">
+                                   </form>
+                                   <div id="stockvaluegraph"></div>
+                           </div>
+                       </div>
+                   </div>
+
+                   <div class="col-sm-3">
+                       <div class="box-info">
+                           <p>Production Values</p>
+                           <div style="width:100%; height:300px;">
+                               <input id="b1button" type="button" class="btn btn-primary" value="Previous">
+                               <div id="productionvalues"></div>
+                           </div>
+                       </div>
+                   </div>
               </div>
 
                 </div><!--row end-->
