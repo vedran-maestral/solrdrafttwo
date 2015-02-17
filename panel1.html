@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link href="./css/style.css" rel="stylesheet">
+    <script src="js/jquery-1.10.2.js"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
         google.load("visualization", "1.1", {packages: ["bar", "corechart", "geochart", "map", "annotationchart"]})</script>
@@ -21,14 +22,65 @@
         google.setOnLoadCallback(startMe);
         function startMe() {
             drawZoomableChart();
-            drawproductionValues();
+            //drawproductionValues();
             drawMap();
         }
     </script>
 
     <script>
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawChart1);
+        function drawChart1() {
+            var data = google.visualization.arrayToDataTable([
+                ['monthly & Anual', 'Anual', 'Monthly'],
+                ['1', 1000, 400],
+                ['2', 1170, 460],
+                ['3', 660, 1120],
+                ['4', 1030, 540]
+            ]);
+
+            var options = {
+                title: 'Revenue rate in Euro',
+                hAxis: {title: 'monthly & Anual', titleTextStyle: {color: 'red'}}
+            };
+
+            var chart = new google.visualization.ColumnChart(document.getElementById('stockvaluegraph'));
+            chart.draw(data, options);
+        }
+
+        google.load("visualization", "1", {packages: ["corechart"]});
+        google.setOnLoadCallback(drawChart2);
+        function drawChart2() {
+            var data = google.visualization.arrayToDataTable([
+                ['Year', 'Sales', 'Expenses'],
+                ['2013', 1000, 400],
+                ['2014', 1170, 460],
+                ['2015', 660, 1120],
+                ['2016', 1030, 540]
+            ]);
+
+            var options = {
+                title: 'Company Performance',
+                hAxis: {title: 'Year', titleTextStyle: {color: '#333'}},
+                vAxis: {minValue: 0}
+            };
+
+            var chart = new google.visualization.AreaChart(document.getElementById('productionvalues'));
+            chart.draw(data, options);
+        }
+
+        $(window).resize(function () {
+            drawChart1();
+            drawChart2();
+        });
+
+        // Reminder: you need to put https://www.google.com/jsapi in the head of your document or as an external resource on codepen //
+    </script>
+
+    <script>
 
         function drawMap() {
+            console.log("Is this getting here at all?")
             var data = google.visualization.arrayToDataTable([
                 ['Lat', 'Long', 'Name'],
                 [33.75524465, -84.38781023, 'Main Office - ADDRESS COMES HERE'],
@@ -68,7 +120,7 @@
                         debugger;
                     } else if (item.row != null) {
                         var str = data.getFormattedValue(item.row, 2);
-                        message +=  "You clicked on: " +  str + '\n';
+                        message += "You clicked on: " + str + '\n';
                         debugger;
                     } else if (item.column != null) {
                         var str = data.getFormattedValue(0, item.column);
@@ -162,15 +214,15 @@
             for (var i = 0; i < MAX; ++i) {
                 data.addRow([i.toString(), Math.floor(Math.random() * 100)]);
             }
-            var prevButton = document.getElementById('b1');
+           /* var prevButton = document.getElementById('b1');
             var nextButton = document.getElementById('b2');
-            var changeZoomButton = document.getElementById('b3');
+            var changeZoomButton = document.getElementById('b3');*/
 
             function drawChart() {
                 // Disabling the button while the chart is drawing.
-                prevButton.disabled = true;
-                nextButton.disabled = true;
-                changeZoomButton.disabled = true;
+                //prevButton.disabled = true;
+                //nextButton.disabled = true;
+                //changeZoomButton.disabled = true;
                 google.visualization.events.addListener(chart, 'ready',
                         function () {
                             prevButton.disabled = options.hAxis.viewWindow.min <= 0;
@@ -180,7 +232,7 @@
                 chart.draw(data, options);
             }
 
-            prevButton.onclick = function () {
+       /* prevButton.onclick = function () {
                 options.hAxis.viewWindow.min -= 1;
                 options.hAxis.viewWindow.max -= 1;
                 drawChart();
@@ -201,7 +253,7 @@
                 }
                 zoomed = !zoomed;
                 drawChart();
-            }
+            }*/
             drawChart();
         }
     </script>
@@ -322,6 +374,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body text-center">
                                             <h5 class="no-margn"><strong><a>Call Log (Total 3400 logs)</a></strong></h5>
+
                                             <p class="text-muted">
                                                 <small><a>2 Require Your Attention</a></small>
                                             </p>
@@ -336,153 +389,143 @@
                                 <div class="col-md-4">
                                     <div class="panel panel-default">
                                         <div class="panel-body text-center">
-                                            <h5 class="no-margn"><strong><a>Social Network (Total 2.435 posts) </a></strong></h5>
+                                            <h5 class="no-margn"><strong><a>Social Network (Total 2.435
+                                                posts) </a></strong></h5>
 
                                             <p class="text-muted">
                                                 <small><a>24 Require Your Attention</a></small>
                                             </p>
                                             <div id="dashboard-stats-sparkline6">
-                                                <img src="images/images.jpg" alt="Social Network" style="height: 20%; width:20%">
+                                                <img src="images/images.jpg" alt="Social Network"
+                                                     style="height: 20%; width:20%">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-sm-3">
-                                    <div class="box-info">
-                                        <p>Current Stock Values</p>
-                                        <div style="width:100%; height:300px;">
-                                            <form>
-                                                <input id="b1" type="button" class="btn btn-success" value="Previous">
-                                                <input id="b2" type="button" class="btn btn-success" value="Next">
-                                                <input id="b3" type="button" class="btn btn-primary"
-                                                       value="Change Zoom">
-                                            </form>
-                                            <div id="stockvaluegraph"></div>
+                                    <div class="col-sm-6">
+                                        <div class="box-info">
+                                            <p>Monthly & Anual revenue</p>
+
+                                            <div style="width:auto; height:auto;">
+                                                <div id="stockvaluegraph" class="chart"></div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-sm-3">
-                                    <div class="box-info">
-                                        <p>Production Values</p>
-                                        <div style="width:100%; height:300px;">
-                                            <input id="b1button" type="button" class="btn btn-primary" value="Previous">
-
-                                            <div id="productionvalues"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">Task's in progress</div>
-                                                <div class="panel-body">
-                                                    <p><strong>Loading Server Data</strong>
-                                                        <small class="text-muted">45% completed</small>
-                                                    </p>
-                                                    <div class="progress progress-xs progress-striped active">
-                                                        <div style="width: 45%" aria-valuemax="100" aria-valuemin="0"
-                                                             aria-valuenow="45" role="progressbar" class="progress-bar">
-                                                            <span class="sr-only">45% Complete</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <p><strong>40%</strong> Task one</p>
-
-                                                            <div class="progress progress-xs no-margn">
-                                                                <div class="progress-bar progress-bar-success progress-bar-striped"
-                                                                     role="progressbar" aria-valuenow="40"
-                                                                     aria-valuemin="0" aria-valuemax="100"
-                                                                     style="width: 40%">
-                                                                    <span class="sr-only">40% Complete (success)</span>
-                                                                </div>
+                                    <div class="col-lg-6">
+                                        <div class="row">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">Rates in percentage</div>
+                                                    <div class="panel-body">
+                                                        <p><strong>CUSTOMER SATISFACTION RATING</strong>
+                                                            <small class="text-muted">45% achieved</small>
+                                                        </p>
+                                                        <div class="progress progress-xs progress-striped active">
+                                                            <div style="width: 45%" aria-valuemax="100"
+                                                                 aria-valuemin="0"
+                                                                 aria-valuenow="45" role="progressbar"
+                                                                 class="progress-bar">
+                                                                <span class="sr-only">45% Complete</span>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-4">
-                                                            <p><strong>60%</strong> Task two</p>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <p><strong>40%</strong> Task one</p>
 
-                                                            <div class="progress progress-xs no-margn">
-                                                                <div class="progress-bar progress-bar-warning progress-bar-striped"
-                                                                     role="progressbar" aria-valuenow="60"
-                                                                     aria-valuemin="0" aria-valuemax="100"
-                                                                     style="width: 60%">
-                                                                    <span class="sr-only">60% Complete (warning)</span>
+                                                                <div class="progress progress-xs no-margn">
+                                                                    <div class="progress-bar progress-bar-success progress-bar-striped"
+                                                                         role="progressbar" aria-valuenow="40"
+                                                                         aria-valuemin="0" aria-valuemax="100"
+                                                                         style="width: 45%">
+                                                                        <span class="sr-only">40% Complete (success)</span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <p><strong>80%</strong> Task three</p>
-                                                            <div class="progress progress-xs no-margn">
-                                                                <div class="progress-bar progress-bar-danger progress-bar-striped"
-                                                                     role="progressbar" aria-valuenow="80"
-                                                                     aria-valuemin="0" aria-valuemax="100"
-                                                                     style="width: 80%">
-                                                                    <span class="sr-only">80% Complete (danger)</span>
+                                                            <div class="col-lg-4">
+                                                                <p><strong>60%</strong> Task two</p>
+
+                                                                <div class="progress progress-xs no-margn">
+                                                                    <div class="progress-bar progress-bar-warning progress-bar-striped"
+                                                                         role="progressbar" aria-valuenow="60"
+                                                                         aria-valuemin="0" aria-valuemax="100"
+                                                                         style="width: 60%">
+                                                                        <span class="sr-only">60% Complete (warning)</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-4">
+                                                                <p><strong>80%</strong> Task three</p>
+
+                                                                <div class="progress progress-xs no-margn">
+                                                                    <div class="progress-bar progress-bar-danger progress-bar-striped"
+                                                                         role="progressbar" aria-valuenow="80"
+                                                                         aria-valuemin="0" aria-valuemax="100"
+                                                                         style="width: 80%">
+                                                                        <span class="sr-only">80% Complete (danger)</span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body text-center">
+                                                    <div id="mapholder"></div>
+
+                                        </div>
                                             </div>
                                         </div>
+
                                     </div>
-
-                                   <div class="row">
-                                   <div id="mapholder"></div>
-
-                                   </div>
-
-
-
-                                </div>
-
-
                             </div>
 
                         </div>
-                        <!--row end-->
                     </div>
-                    <!--scrollable wrapper end-->
                 </div>
-                <!--margin-container end-->
             </div>
-            <!--main end-->
+            <!--scrollable wrapper end-->
         </div>
-        <!--layout-container end-->
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="js/jquery-1.10.2.js"></script>
-        <script src="js/jquery-ui-1.9.1.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="bs3/js/bootstrap.min.js"></script>
-        <script src="js/smooth-sliding-menu.js"></script>
-        <script src="js/console-numbering.js"></script>
-        <script src="js/to-do-admin.js"></script>
+        <!--margin-container end-->
+    </div>
+    <!--main end-->
+</div>
+
+<!--layout-container end-->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/jquery-ui-1.9.1.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="bs3/js/bootstrap.min.js"></script>
+<script src="js/smooth-sliding-menu.js"></script>
+<script src="js/console-numbering.js"></script>
+<script src="js/to-do-admin.js"></script>
 
 
-        <script src="js/plugins/underscore/underscore-min.js"></script>
-        <!-- Bootstrap -->
-        <script src="js/bootstrap/bootstrap.min.js"></script>
+<script src="js/plugins/underscore/underscore-min.js"></script>
+<!-- Bootstrap -->
+<script src="js/bootstrap/bootstrap.min.js"></script>
 
-        <!-- Globalize -->
-        <script src="js/globalize/globalize.min.js"></script>
+<!-- Globalize -->
+<script src="js/globalize/globalize.min.js"></script>
 
-        <!-- NanoScroll -->
-        <script src="js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+<!-- NanoScroll -->
+<script src="js/plugins/nicescroll/jquery.nicescroll.min.js"></script>
 
-        <!-- Chart JS -->
-        <script src="js/plugins/DevExpressChartJS/dx.chartjs.js"></script>
-        <script src="js/plugins/DevExpressChartJS/world.js"></script>
-        <!-- For Demo Charts -->
-        <script src="js/plugins/DevExpressChartJS/demo-charts.js"></script>
-        <script src="js/plugins/DevExpressChartJS/demo-vectorMap.js"></script>
+<!-- Chart JS -->
+<script src="js/plugins/DevExpressChartJS/dx.chartjs.js"></script>
+<script src="js/plugins/DevExpressChartJS/world.js"></script>
+<!-- For Demo Charts -->
+<script src="js/plugins/DevExpressChartJS/demo-charts.js"></script>
+<script src="js/plugins/DevExpressChartJS/demo-vectorMap.js"></script>
 
-        <!-- Sparkline JS -->
-        <script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
-        <!-- For Demo Sparkline -->
-        <script src="js/plugins/sparkline/jquery.sparkline.demo.js"></script>
+<!-- Sparkline JS -->
+<script src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+<!-- For Demo Sparkline -->
+<script src="js/plugins/sparkline/jquery.sparkline.demo.js"></script>
 
 
 </body>
